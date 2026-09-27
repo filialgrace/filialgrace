@@ -24,7 +24,9 @@ const Header = () => {
     { path: '/contact', label: t('nav.contact') },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  // Static hosting serves pre-rendered pages at "/channel/", but they're rendered as "/channel".
+  const isActive = (path: string) =>
+    (location.pathname.replace(/\/+$/, '') || '/') === path;
 
   return (
     <header className="fixed w-full top-0 z-40 bg-white/90 backdrop-blur-sm shadow-sm">
